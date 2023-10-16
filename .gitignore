@@ -1,0 +1,70 @@
+# Archivos y directorios generados por Django
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+*.bak
+*.swp
+*.~c
+media/
+static/
+
+# Entornos virtuales (pueden variar según el nombre de tu entorno virtual)
+venv/
+env/
+.env
+
+# Archivos de configuración específicos de tu sistema
+db.sqlite3
+.vscode/
+.idea/
+__pycache__
+*.sublime-workspace
+*.sublime-project
+
+# Dependencias
+*.egg-info/
+dist/
+build/
+__pycache__/
+*.pyc
+*.pyo
+
+# Archivos de logs
+logs/
+*.log
+*.log.*
+*.log-*
+
+# Archivos de entorno
+.env
+
+# Caché y sesiones de Django
+__pycache__/
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+*.session
+
+# Archivos de caché
+__pycache__/
+*.pyc
+
+# Archivos de caché de Django
+__pycache__/
+*.pyc
+
+# Archivos de registro de Python
+logs/
+*.log
+
+# Cache y sesiones de Django
+__pycache__/
+*.pyc
+*.db
+*.sqlite3
+*.session
