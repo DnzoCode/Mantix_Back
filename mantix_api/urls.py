@@ -22,5 +22,7 @@ urlpatterns = [
     path('role/', include('mantix_pro.routes.role')),
     path('status/', include('mantix_pro.routes.status')),
     path('location/', include('mantix_pro.routes.location')),
+    path('tecnico/', include('mantix_pro.routes.tecnico')),
+    
 
 ]

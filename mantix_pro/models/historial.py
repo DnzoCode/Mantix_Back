@@ -6,9 +6,9 @@ from mantix_pro.models.status import Status
 
 
 class Historial(models.Model):
-    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    event = models.ForeignKey(Events, on_delete=models.DO_NOTHING)
-    status = models.OneToOneField(Status, on_delete=models.DO_NOTHING, null=True)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True)
+    event = models.ForeignKey(Events, on_delete=models.DO_NOTHING, null=True)
+    status = models.ForeignKey(Status, on_delete=models.DO_NOTHING, null=True)
     date_change = models.DateField(null=True)
     
         #Timestamps

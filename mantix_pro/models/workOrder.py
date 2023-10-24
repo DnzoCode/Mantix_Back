@@ -16,7 +16,7 @@ class WorkOrder(models.Model):
     hora_fin = models.CharField(max_length=200, null=True)
 
 
-    status = models.OneToOneField(Status, on_delete=models.DO_NOTHING, null=True)
+    status = models.ForeignKey(Status, on_delete=models.DO_NOTHING, null=True)
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True)
     event = models.ForeignKey(Events, on_delete=models.DO_NOTHING, null=True)
     tecnico = models.ForeignKey(Tecnico, on_delete=models.DO_NOTHING, null=True)

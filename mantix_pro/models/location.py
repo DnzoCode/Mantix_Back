@@ -3,7 +3,7 @@ from mantix_pro.models.status import Status
 
 class Location(models.Model):
     location_name = models.CharField(max_length=200, null=True, unique=True)
-    status = models.OneToOneField(Status, on_delete=models.DO_NOTHING)
+    status = models.ForeignKey(Status, on_delete=models.DO_NOTHING,null=True)
 
     #Timestamps
     created_at = models.DateTimeField(auto_now_add=True)

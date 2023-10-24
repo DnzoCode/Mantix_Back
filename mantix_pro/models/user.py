@@ -6,8 +6,8 @@ from mantix_pro.models.location import Location
 
 
 class User(models.Model):
-    status = models.OneToOneField(Status, on_delete=models.DO_NOTHING, null=True)
-    role = models.OneToOneField(Role, on_delete=models.DO_NOTHING, null=True)
+    status = models.ForeignKey(Status, on_delete=models.DO_NOTHING, null=True)
+    role = models.ForeignKey(Role, on_delete=models.DO_NOTHING, null=True)
     location = models.ForeignKey(Location, on_delete=models.DO_NOTHING, null=True)
 
     user_name = models.CharField(max_length=200, null=True)
