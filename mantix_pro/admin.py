@@ -9,6 +9,10 @@ from .models.status import Status
 from .models.permission import Permission
 from .models.user import User
 from .models.workOrder import WorkOrder
+from .models.historial import Historial
+from .models.day import Day
+
+
 
 # Register your models here.
 admin.site.register(Events)
@@ -21,3 +25,6 @@ admin.site.register(Status)
 admin.site.register(Permission)
 admin.site.register(User)
 admin.site.register(WorkOrder)
+admin.site.register(Historial)
+admin.site.register(Day)
+

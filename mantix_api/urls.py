@@ -19,8 +19,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('role/', include('mantix_pro.routes')),
-    path('status/', include('mantix_pro.routes')),
-    path('location/', include('mantix_pro.routes')),
+    path('role/', include('mantix_pro.routes.role')),
+    path('status/', include('mantix_pro.routes.status')),
+    path('location/', include('mantix_pro.routes.location')),
 
 ]

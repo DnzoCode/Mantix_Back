@@ -5,7 +5,7 @@ from mantix_pro.models.maquina import Maquina
 
 
 class Events(models.Model):
-    tecnico = models.OneToOneField(Tecnico, on_delete=models.DO_NOTHING, null=True)
+    tecnico = models.ForeignKey(Tecnico, on_delete=models.DO_NOTHING, null=True)
     status = models.OneToOneField(Status, on_delete=models.DO_NOTHING, null=True)
     maquina = models.ForeignKey(Maquina, on_delete=models.DO_NOTHING, null=True)
 
