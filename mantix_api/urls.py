@@ -23,6 +23,8 @@ urlpatterns = [
     path('status/', include('mantix_pro.routes.status')),
     path('location/', include('mantix_pro.routes.location')),
     path('tecnico/', include('mantix_pro.routes.tecnico')),
-    
-
+    path('menu/', include('mantix_pro.routes.menu')),
+    path('permission/', include('mantix_pro.routes.permission')),
+    path('events/', include('mantix_pro.routes.events')),
+    path('maquina/', include('mantix_pro.routes.maquina')),
 ]

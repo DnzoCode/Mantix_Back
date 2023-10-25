@@ -9,5 +9,5 @@ router.register(r'location', LocationView, 'location')
 
 urlpatterns = [
     path("api/v1/", include(router.urls)),
-    path('api/v1/activar_desactivar/<int:pk>/', LocationView.as_view({'post': 'activar_desactivar'}), name='role-activar-desactivar'),
+    path('api/v1/activar_desactivar/<int:pk>/', LocationView.as_view({'post': 'activar_desactivar'})),
 ]
