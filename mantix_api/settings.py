@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-
+from datetime import date
+# from mantix_pro.models.user import User
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,8 +26,11 @@ SECRET_KEY = 'django-insecure-x7t4xt=vjnx1jke%d9d6iu1%iqf-duyfl94svqi^_inx6wvzdj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = [
+    'http://127.0.0.1:8000/',
+    '127.0.0.1'
+]
+# AUTH_USER_MODEL = 'mantix_pro.User'
 
 # Application definition
 
@@ -39,10 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
+    'rest_framework_jwt',
     'coreapi',
     'mantix_pro'
 ]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -115,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-col'
 
 TIME_ZONE = 'UTC'
 
@@ -137,4 +141,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # allowed Cors
 CORS_ALLOWED_ORIGINS = []
 
-REST_FRAMEWORK = { 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' }
+
+# AUTH_USER_MODEL = 'mantix_pro.models.user.User'
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    
+}
+
+
+JWT_AUTH = {
+    'JWT_SECRET_KEY': 'mantix_auth',
+    'JWT_ALGORITHM': 'HS256',
+    'JWT_ALLOW_REFRESH': True,
+}

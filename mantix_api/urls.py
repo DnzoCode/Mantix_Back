@@ -27,4 +27,7 @@ urlpatterns = [
     path('permission/', include('mantix_pro.routes.permission')),
     path('events/', include('mantix_pro.routes.events')),
     path('maquina/', include('mantix_pro.routes.maquina')),
+    path('user/', include('mantix_pro.routes.user')),
+    # path('auth/', include('mantix_pro.routes.Auth.auth')),
+    
 ]

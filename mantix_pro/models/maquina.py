@@ -8,7 +8,7 @@ class Maquina(models.Model):
     maquina_name = models.CharField(max_length=250, null=True)
     maquina_modelo = models.CharField(max_length=250, null=True)
     numero_serial = models.CharField(max_length=250, null=True)
-    ultimo_mantenimiento = models.DateTimeField()                                                   
+    ultimo_mantenimiento = models.DateTimeField(null=True)                                               
     #Timestamps
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
