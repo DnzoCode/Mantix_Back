@@ -8,7 +8,7 @@ from mantix_pro.serializer import EventSerializer
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-class EvenView(viewsets.ModelViewSet):
+class EventView(viewsets.ModelViewSet):
     serializer_class = EventSerializer
     queryset = Events.objects.all()
     
