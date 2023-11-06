@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from mantix_pro.models.status import Status
 from mantix_pro.models.permission import Permission
-
+from rest_framework import status
 
 from mantix_pro.serializer import PermissionSerializer
 
@@ -29,3 +29,19 @@ class PermissionView(viewsets.ModelViewSet):
             mensaje =  f'Exeption: {ex}'
         finally:
             return Response({'mensaje': mensaje})
+    
+    # @param roleId
+    @action(detail=True, methods=['get'])
+    def ConsultarPermisos(self, request, roleId=None ):
+        statusCode =""
+        mensaje =  ""
+        try:
+            permission = Permission.objects.filter(role= roleId)
+            serialized_permissions  = PermissionSerializer(permission, many=True,context={'request': self.request}).data
+            mensaje = serialized_permissions
+            statusCode =status.HTTP_200_OK
+        except Exception as ex:
+            mensaje =  f'Exeption: {ex}'
+            statusCode =status.HTTP_500_INTERNAL_SERVER_ERROR
+        finally:
+            return Response({'mensaje': mensaje}, status=statusCode)

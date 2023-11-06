@@ -10,4 +10,6 @@ router.register(r'permission', PermissionView, 'permission')
 urlpatterns = [
     path("api/v1/", include(router.urls)),
     path('api/v1/activar_desactivar/<int:pk>/', PermissionView.as_view({'post': 'activar_desactivar'})),
+    path('api/v1/ConsultarPermisos/<int:roleId>/', PermissionView.as_view({'get': 'ConsultarPermisos'})),
+    
 ]

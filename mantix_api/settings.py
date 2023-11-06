@@ -140,7 +140,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # allowed Cors
 CORS_ALLOWED_ORIGINS = []
-
+CORS_ALLOW_ALL_ORIGINS = True
 
 # AUTH_USER_MODEL = 'mantix_pro.models.user.User'
 REST_FRAMEWORK = {

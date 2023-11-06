@@ -1,7 +1,8 @@
 from django.db import models
 from mantix_pro.models.menu import Menu
 from mantix_pro.models.role import Role
-
+from rest_framework.decorators import action
+from rest_framework.response import Response
 class Permission(models.Model):
     menu = models.ForeignKey(Menu, on_delete=models.SET_NULL, null=True)
     role = models.ForeignKey(Role, on_delete=models.SET_NULL, null=True)

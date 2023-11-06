@@ -8,6 +8,8 @@ from .models.permission import Permission
 from .models.events import Events
 from .models.maquina import Maquina
 from .models.user import User
+from .models.day import Day
+
 
 
 class RoleSerializer(serializers.ModelSerializer):
@@ -110,7 +112,6 @@ class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Events
         fields = '__all__'
-        depth = 1 
         
     def to_representation(self, instance):
         data = super(EventSerializer, self).to_representation(instance)
@@ -121,10 +122,17 @@ class EventSerializer(serializers.ModelSerializer):
                 data['tecnico'] = TecnicoSerializer(instance.tecnico, context=self.context).data
             if instance.maquina is not None:
                 data['maquina'] = MaquinaSerializer(instance.maquina, context=self.context).data
-
-           
+            if instance.day is not None:
+                data['day'] = DaySerializer(instance.day, context=self.context).data
         return data
-    
+    def create(self, validated_data):
+        start_date = validated_data.get('start').date()
+        day, created = Day.objects.get_or_create(dayDate=start_date)
+        if created:
+            day.save()
+        validated_data['day'] = day
+        event = Events.objects.create(**validated_data)
+        return event
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -144,4 +152,20 @@ class UserSerializer(serializers.ModelSerializer):
             if instance.location is not None:
                 data['location'] = LocationSerializer(instance.location, context=self.context).data
 
+        return data
+    
+class DaySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Day
+        fields = '__all__'
+        
+    def validate(self, data):
+        dayDate = data.get('dayDate')
+
+        if dayDate is not None:
+            # Verifica si ya existe un día con la misma fecha en la base de datos
+            existing_day = Day.objects.filter(dayDate=dayDate).first()
+            if existing_day:
+                raise serializers.ValidationError('El día ya existe')
+        
         return data
