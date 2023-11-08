@@ -10,4 +10,6 @@ router.register(r'events', EventView, 'events')
 urlpatterns = [
     path("api/v1/", include(router.urls)),
     path('api/v1/activar_desactivar/<int:pk>/', EventView.as_view({'post': 'activar_desactivar'})),
+    path('api/v1/eventsByFecha/<fecha>/', EventView.as_view({'get': 'eventsByFecha'})),
+    
 ]

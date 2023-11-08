@@ -2,12 +2,12 @@ from rest_framework import viewsets
 from mantix_pro.models.status import Status
 from mantix_pro.models.events import Events
 
-
+from rest_framework import status
 from mantix_pro.serializer import EventSerializer
 
 from rest_framework.decorators import action
 from rest_framework.response import Response
-
+from django.db.models import Q
 class EventView(viewsets.ModelViewSet):
     serializer_class = EventSerializer
     queryset = Events.objects.all()
@@ -29,3 +29,17 @@ class EventView(viewsets.ModelViewSet):
             mensaje =  f'Exeption: {ex}'
         finally:
             return Response({'mensaje': mensaje})
+        
+    @action(detail=True, methods=['GET'])
+    def eventsByFecha(self, request, fecha=None):
+        try:
+            events = Events.objects.filter(start=fecha)
+            serializer = self.get_serializer(events, many=True)
+            
+            return Response(serializer.data, status=status.HTTP_200_OK)
+            
+        except Exception as ex:
+            mensaje =  f'Exeption: {ex}'
+            return Response({'mensaje': mensaje}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            
+            

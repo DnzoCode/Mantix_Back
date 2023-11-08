@@ -6,7 +6,7 @@ from mantix_pro.models.tecnico import Tecnico
 
 class WorkOrder(models.Model):
     
-    work_order = models.CharField(max_length=200, null=True, unique=True)
+    work_order = models.CharField(max_length=200, null=True)
     trabajo_realizado = models.CharField(max_length=200, null=True)
     diagnostico = models.CharField(max_length=200, null=True)
     actividades = models.CharField(max_length=200, null=True)

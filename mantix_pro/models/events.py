@@ -13,8 +13,8 @@ class Events(models.Model):
     day = models.ForeignKey(Day, on_delete=models.DO_NOTHING, null=True)
     
     title = models.CharField(max_length=100, null=True)
-    start = models.DateTimeField()
-    end = models.DateTimeField()
+    start = models.DateTimeField(null=True)
+    end = models.DateTimeField(null=True)
     description = models.CharField(max_length=200, null=True)
     turno = models.CharField(max_length=1, null=True)
     mensaje_reprogramado = models.CharField(max_length=200, null=True)

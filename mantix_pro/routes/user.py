@@ -11,5 +11,6 @@ urlpatterns = [
     path("api/v1/", include(router.urls)),
     path('api/v1/activar_desactivar/<int:pk>/', UserView.as_view({'post': 'activar_desactivar'})),
     path('api/v1/auth/', UserView.as_view({'post': 'ObtenerTokenAuth'})),
+    path('api/v1/ObtenerOwners/', UserView.as_view({'get': 'ObtenerOwners'})),
     
 ]

@@ -9,4 +9,6 @@ router.register(r'day', DayView, 'day')
 
 urlpatterns = [
     path("api/v1/", include(router.urls)),
+    path('api/v1/ObtenerDiaAnterior/<dayDate>/', DayView.as_view({'get': 'ObtenerDiaAnterior'})),
+    
 ]

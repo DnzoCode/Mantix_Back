@@ -4,7 +4,7 @@ class Menu(models.Model):
     menu_name = models.CharField(max_length=200, null=True)
     menu_icon = models.CharField(max_length=200, null=True)
     menu_to = models.CharField(max_length=200, null=True)
-    menu_orden = models.IntegerField(max_length=1, null=True)
+    menu_orden = models.IntegerField(null=True)
     status = models.ForeignKey(Status, on_delete=models.DO_NOTHING, null=True)
         #Timestamps
     created_at = models.DateTimeField(auto_now_add=True)

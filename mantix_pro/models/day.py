@@ -6,7 +6,7 @@ from rest_framework import status
 
 class Day(models.Model):
     
-    dayDate = models.DateTimeField(null=True)
+    dayDate = models.DateField(null=True)
     isClosed = models.CharField(max_length=1, null=True, default="N")
     
         #Timestamps

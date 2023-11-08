@@ -9,7 +9,9 @@ from .models.events import Events
 from .models.maquina import Maquina
 from .models.user import User
 from .models.day import Day
+from .models.workOrder import WorkOrder
 
+from datetime import datetime, timedelta
 
 
 class RoleSerializer(serializers.ModelSerializer):
@@ -127,9 +129,14 @@ class EventSerializer(serializers.ModelSerializer):
         return data
     def create(self, validated_data):
         start_date = validated_data.get('start').date()
+        end_date = validated_data.get('end')
+        
+        end_date = datetime.combine(end_date, datetime.max.time()) - timedelta(microseconds=1)
         day, created = Day.objects.get_or_create(dayDate=start_date)
         if created:
             day.save()
+            
+        validated_data['end'] = end_date  # Asigna la hora de finalización ajustada
         validated_data['day'] = day
         event = Events.objects.create(**validated_data)
         return event
@@ -168,4 +175,26 @@ class DaySerializer(serializers.ModelSerializer):
             if existing_day:
                 raise serializers.ValidationError('El día ya existe')
         
+        return data
+
+class WorkOrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WorkOrder
+        fields = '__all__'
+        
+    def to_representation(self, instance):
+        data = super(WorkOrderSerializer, self).to_representation(instance)
+
+        # Determina si la solicitud es una consulta GET
+        if self.context['request'].method == 'GET':
+            # Incluye las relaciones en la representación
+            if instance.status is not None:
+                data['status'] = StatusSerializer(instance.status).data
+            if instance.event is not None:
+                data['event'] = EventSerializer(instance.event, context=self.context).data
+            if instance.tecnico is not None:
+                data['tecnico'] = TecnicoSerializer(instance.tecnico, context=self.context).data
+            if instance.user is not None:
+                data['user'] = UserSerializer(instance.user, context=self.context).data
+
         return data
