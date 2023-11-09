@@ -15,8 +15,8 @@ class WorkOrderView(viewsets.ModelViewSet):
     @action(detail=True, methods=['GET'])
     def ObtenerWorkOrderByEvent(self, request, eventId=None):
         try:
-            workOrder = WorkOrder.objects.filter(event=eventId)
-            serializer = self.get_serializer(workOrder, many=True)
+            workOrder = WorkOrder.objects.filter(event=eventId).first()
+            serializer = self.get_serializer(workOrder)
             
             return Response(serializer.data, status=status.HTTP_200_OK)
             

@@ -114,7 +114,7 @@ class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Events
         fields = '__all__'
-        
+        ordering = ['turno']
     def to_representation(self, instance):
         data = super(EventSerializer, self).to_representation(instance)
         if self.context['request'].method == 'GET':

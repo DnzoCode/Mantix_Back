@@ -36,3 +36,17 @@ class DayView(viewsets.ModelViewSet):
         except Exception as ex:
             mensaje = f'Exeption: {ex}'
             return Response({'mensaje': mensaje}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+    @action(detail=True, methods=['GET'])
+    def ObtenerDiaPorFecha(self, request, dayDate):
+        try:
+            day = Day.objects.filter(dayDate=dayDate).first()
+            serializer = self.get_serializer(day)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except ValueError:
+            return Response({'mensaje': 'Fecha no válida'}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as ex:
+            mensaje = f'Exeption: {ex}'
+            return Response({'mensaje': mensaje}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+    
