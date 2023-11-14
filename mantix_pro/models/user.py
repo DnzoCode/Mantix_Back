@@ -22,7 +22,7 @@ class User(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.user_login} - {self.user_name} {self.user_lastname} | {self.location.location_name}"
+        return f"{self.user_login} - {self.user_name} {self.user_lastname}"
     
 @receiver(pre_save, sender=User)
 def hash_password(sender, instance, **kwargs):

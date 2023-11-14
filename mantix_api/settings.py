@@ -24,12 +24,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-x7t4xt=vjnx1jke%d9d6iu1%iqf-duyfl94svqi^_inx6wvzdj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
-    'http://127.0.0.1:8000/',
-    '127.0.0.1'
+    '127.0.0.1:8000',
+    '192.168.10.11',
+    '192.168.10.11:8000',
 ]
+X_FRAME_OPTIONS = 'ALLOWALL'
+
 # AUTH_USER_MODEL = 'mantix_pro.User'
 
 # Application definition
@@ -139,7 +142,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # allowed Cors
-CORS_ALLOWED_ORIGINS = []
+# CORS_ALLOWED_ORIGINS = []
 CORS_ALLOW_ALL_ORIGINS = True
 
 # AUTH_USER_MODEL = 'mantix_pro.models.user.User'

@@ -10,4 +10,6 @@ router.register(r'maquina', MaquinaView, 'maquina')
 urlpatterns = [
     path("api/v1/", include(router.urls)),
     path('api/v1/activar_desactivar/<int:pk>/', MaquinaView.as_view({'post': 'activar_desactivar'})),
+    path('api/v1/uploadMaquinas/', MaquinaView.as_view({'post': 'uploadMaquinas'})),
+    
 ]

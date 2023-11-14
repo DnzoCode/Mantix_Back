@@ -10,4 +10,6 @@ router.register(r'location', LocationView, 'location')
 urlpatterns = [
     path("api/v1/", include(router.urls)),
     path('api/v1/activar_desactivar/<int:pk>/', LocationView.as_view({'post': 'activar_desactivar'})),
+    path('api/v1/uploadLocations/', LocationView.as_view({'post': 'uploadLocations'})),
+    
 ]
