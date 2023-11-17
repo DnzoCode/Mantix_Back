@@ -30,6 +30,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1:8000',
     '192.168.10.11',
     '192.168.10.11:8000',
+    '10.24.216.215'
 ]
 X_FRAME_OPTIONS = 'ALLOWALL'
 
@@ -92,7 +93,7 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',  # O el host donde se encuentra tu servidor de MySQL
-        'PORT': '3306',       # El puerto de MySQL por defecto es 3306
+        'PORT': '3307',       # El puerto de MySQL por defecto es 3306
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         },
@@ -133,8 +134,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-
-STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
