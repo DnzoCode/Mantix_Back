@@ -12,6 +12,7 @@ from django.db import IntegrityError, transaction
 import base64
 import pandas as pd
 from django.shortcuts import get_object_or_404
+from rest_framework import status
 class MaquinaView(viewsets.ModelViewSet):
     serializer_class = MaquinaSerializer
     queryset = Maquina.objects.all()
@@ -68,7 +69,7 @@ class MaquinaView(viewsets.ModelViewSet):
 
             # Si hay errores, se realiza un rollback y no se confirma la transacción
             if errors:
-                return Response({"errors": errors})
+                return Response({"errors": errors}, status=status.HTTP_400_BAD_REQUEST)
 
             # Creación de máquinas
             with transaction.atomic():
@@ -96,9 +97,9 @@ class MaquinaView(viewsets.ModelViewSet):
                     )
 
             # Confirmar transacción si no hay errores después de la validación
-            return Response({"message": "Datos de máquinas cargados exitosamente"})
+            return Response({"message": "Datos de máquinas cargados exitosamente"},status=status.HTTP_200_OK)
 
         except IntegrityError as e:
-            return Response({"error": str(e)})
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
-            return Response({"error": str(e)})
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

@@ -128,9 +128,12 @@ class EventView(viewsets.ModelViewSet):
             # Confirmar transacción si no hay errores después de la validación
             return Response({"message": "Mantenimientos programados exitosamente"},status=status.HTTP_200_OK)
         except IntegrityError as e:
-            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+            errors.append({"error": f"{str(e)}"})
+            return Response({"errors": errors}, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
-            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            errors.append({"error": f"{str(e)}"})
+            
+            return Response({"errors": errors}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             
     @action(detail=True, methods=['GET'])
     def eventsByMonth(self, request, initialDate=None, finalDate=None):

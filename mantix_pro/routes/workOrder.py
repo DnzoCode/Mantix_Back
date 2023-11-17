@@ -10,5 +10,6 @@ router.register(r'workOrder', WorkOrderView, 'workOrder')
 urlpatterns = [
     path("api/v1/", include(router.urls)),
     path('api/v1/ObtenerWorkOrderByEvent/<int:eventId>/', WorkOrderView.as_view({'get': 'ObtenerWorkOrderByEvent'})),
+    path('api/v1/DescargarWorkOrderPdf/<int:workorderId>/', WorkOrderView.as_view({'post': 'DescargarWorkOrderPdf'})),
     
 ]

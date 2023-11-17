@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-x7t4xt=vjnx1jke%d9d6iu1%iqf-duyfl94svqi^_inx6wvzdj
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '127.0.0.1:8000',
+    '127.0.0.1',
     '192.168.10.11',
     '192.168.10.11:8000',
     '10.24.216.215'
@@ -93,7 +93,7 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',  # O el host donde se encuentra tu servidor de MySQL
-        'PORT': '3307',       # El puerto de MySQL por defecto es 3306
+        'PORT': '3306',       # El puerto de MySQL por defecto es 3306
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         },
